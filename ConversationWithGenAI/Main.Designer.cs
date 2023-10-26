@@ -35,7 +35,6 @@
             label2 = new Label();
             lbl_aiSpeaking = new Label();
             pnl_texts = new Panel();
-            chk_showTexts = new CheckBox();
             pnl_texts.SuspendLayout();
             SuspendLayout();
             // 
@@ -57,6 +56,7 @@
             txt_question.Location = new Point(3, 50);
             txt_question.Multiline = true;
             txt_question.Name = "txt_question";
+            txt_question.ScrollBars = ScrollBars.Vertical;
             txt_question.Size = new Size(260, 179);
             txt_question.TabIndex = 1;
             // 
@@ -65,6 +65,7 @@
             txt_answer.Location = new Point(288, 50);
             txt_answer.Multiline = true;
             txt_answer.Name = "txt_answer";
+            txt_answer.ScrollBars = ScrollBars.Vertical;
             txt_answer.Size = new Size(246, 179);
             txt_answer.TabIndex = 2;
             // 
@@ -104,29 +105,16 @@
             pnl_texts.Controls.Add(label1);
             pnl_texts.Controls.Add(label2);
             pnl_texts.Controls.Add(txt_answer);
-            pnl_texts.Location = new Point(38, 153);
+            pnl_texts.Location = new Point(38, 126);
             pnl_texts.Name = "pnl_texts";
-            pnl_texts.Size = new Size(537, 243);
+            pnl_texts.Size = new Size(537, 240);
             pnl_texts.TabIndex = 6;
-            pnl_texts.Visible = false;
-            // 
-            // chk_showTexts
-            // 
-            chk_showTexts.AutoSize = true;
-            chk_showTexts.Location = new Point(41, 119);
-            chk_showTexts.Name = "chk_showTexts";
-            chk_showTexts.Size = new Size(84, 19);
-            chk_showTexts.TabIndex = 7;
-            chk_showTexts.Text = "Show Texts";
-            chk_showTexts.UseVisualStyleBackColor = true;
-            chk_showTexts.CheckedChanged += chk_showTexts_CheckedChanged;
             // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(624, 151);
-            Controls.Add(chk_showTexts);
+            ClientSize = new Size(624, 373);
             Controls.Add(pnl_texts);
             Controls.Add(lbl_aiSpeaking);
             Controls.Add(btn_start_stop);
@@ -134,7 +122,7 @@
             Name = "Main";
             ShowIcon = false;
             SizeGripStyle = SizeGripStyle.Hide;
-            Text = "Conversation with AI";
+            Text = "Conversation with Gen AI";
             pnl_texts.ResumeLayout(false);
             pnl_texts.PerformLayout();
             ResumeLayout(false);
@@ -150,6 +138,5 @@
         private Label label2;
         private Label lbl_aiSpeaking;
         private Panel pnl_texts;
-        private CheckBox chk_showTexts;
     }
 }

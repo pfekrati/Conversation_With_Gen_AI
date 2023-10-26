@@ -5,24 +5,33 @@ using OpenAI_API;
 using OpenAI_API.Moderation;
 using System.Diagnostics.Eventing.Reader;
 using static System.Net.Mime.MediaTypeNames;
+using System.Windows.Forms;
+using System.Configuration;
 
 namespace ConversationWithGenAI
 {
     public partial class Main : Form
     {
-        private const string SubscriptionKey = "";
-        private const string CloudRegion = "";
-        private const string OpenAiUri = "";
-        private const string OpenAiKey = "";
-        private const string VoiceName = "";
+        private readonly string SubscriptionKey;
+        private readonly string AzureRegion;
+        private readonly string OpenAiUri;
+        private readonly string OpenAiKey;
+        private string VoiceName;
         bool start;
+
         SpeechConfig recognizerConfig;
         SpeechConfig speechConfig;
         SpeechRecognizer recognizer;
         SpeechSynthesizer synthesizer;
         OpenAIClient openApiClient;
+
         public Main()
         {
+            SubscriptionKey = ConfigurationManager.AppSettings["SubscriptionKey"];
+            AzureRegion = ConfigurationManager.AppSettings["AzureRegion"];
+            OpenAiUri = ConfigurationManager.AppSettings["OpenAiUri"];
+            OpenAiKey = ConfigurationManager.AppSettings["OpenAiKey"];
+            VoiceName = ConfigurationManager.AppSettings["VoiceName"];
             InitializeComponent();
         }
 
@@ -47,9 +56,9 @@ namespace ConversationWithGenAI
 
         private void InitializeObjects()
         {
-            recognizerConfig = SpeechConfig.FromSubscription(SubscriptionKey, CloudRegion);
+            recognizerConfig = SpeechConfig.FromSubscription(SubscriptionKey, AzureRegion);
             recognizer = new SpeechRecognizer(recognizerConfig);
-            speechConfig = SpeechConfig.FromSubscription(SubscriptionKey, CloudRegion);
+            speechConfig = SpeechConfig.FromSubscription(SubscriptionKey, AzureRegion);
             speechConfig.SpeechSynthesisVoiceName = VoiceName;
             synthesizer = new SpeechSynthesizer(speechConfig);
             openApiClient = new OpenAIClient(new Uri(OpenAiUri), new AzureKeyCredential(OpenAiKey));
@@ -137,20 +146,6 @@ namespace ConversationWithGenAI
                 }
             }
 
-        }
-
-        private void chk_showTexts_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chk_showTexts.Checked)
-            {
-                pnl_texts.Visible = true;
-                this.Height = 454;
-            }
-            else
-            {
-                pnl_texts.Visible = false;
-                this.Height = 190;
-            }
         }
     }
 }
