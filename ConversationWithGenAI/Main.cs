@@ -1,11 +1,6 @@
 using Azure.AI.OpenAI;
 using Azure;
 using Microsoft.CognitiveServices.Speech;
-using OpenAI_API;
-using OpenAI_API.Moderation;
-using System.Diagnostics.Eventing.Reader;
-using static System.Net.Mime.MediaTypeNames;
-using System.Windows.Forms;
 using System.Configuration;
 
 namespace ConversationWithGenAI
